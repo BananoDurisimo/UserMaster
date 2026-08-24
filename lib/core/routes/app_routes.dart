@@ -15,7 +15,7 @@ class AppRoutes {
   static const String dashboard = '/dashboard';
   static const String profile = '/profile';
 
-  static Map<String, WidgetBuilder> routes = {
+  static final Map<String, WidgetBuilder> routes = {
     splash: (context) => const SplashPage(),
     login: (context) => const LoginPage(),
     register: (context) => const RegisterPage(),
