@@ -45,22 +45,6 @@ Aplicar los conocimientos de desarrollo móvil con Flutter para construir una ap
 | Material 3        | Sistema visual             |
 | `cupertino_icons` | Iconografia complementaria |
 
-## Estructura
-
-```text
-lib/
-|-- main.dart
-|-- core/
-|   |-- routes/       # Rutas nombradas de la aplicacion
-|   |-- theme/        # Colores y configuracion visual
-|   `-- widgets/      # Componentes reutilizables (headers, tarjetas)
-`-- features/
-    |-- auth/         # Login, registro y recuperacion
-    |-- dashboard/    # Inicio y actividad reciente
-    |-- profile/      # Perfil del usuario
-    `-- splash/       # Pantalla inicial
-```
-
 ## Rutas disponibles
 
 | Ruta               | Pantalla             |
