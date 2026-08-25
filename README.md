@@ -2,29 +2,35 @@
 
 > Una base Flutter limpia para construir una experiencia movil con identidad.
 
+## Información del Aprendiz
+
+| Dato                     | Valor                                          |
+| ------------------------ | ----------------------------------------------- |
+| Nombre                   | Vicente Ríos                                    |
+| Número de Ficha          | 3256538                                         |
+| Programa de Formación    | Análisis y Desarrollo de Software (ADSO)        |
+| Institución               | SENA                                            |
+
+## 📝 Descripción del Proyecto
+
 Tuki es una aplicacion Flutter enfocada en una navegacion clara y modular. El proyecto incluye el flujo visual de bienvenida, autenticacion, actividad reciente y perfil, listo para crecer hacia una experiencia conectada a servicios reales.
 
-## Lo que ya existe
+## 🎯 Objetivo de la Actividad
 
-- Pantalla de splash como punto de entrada.
-- Inicio de sesion con correo, contrasena y estado de carga.
-- Registro de nuevos usuarios.
-- Recuperacion de contrasena.
-- Dashboard con resumen de actividad reciente.
-- Navegacion inferior entre Inicio y Perfil.
-- Tema Material 3 con colores centralizados.
-- Rutas nombradas para mantener la navegacion ordenada.
+Aplicar los conocimientos de desarrollo móvil con Flutter para construir una aplicación multipantalla con navegación nombrada, un sistema de diseño consistente (tema, colores, componentes reutilizables) y una experiencia de usuario moderna, sentando las bases para integrar en un futuro autenticación real y consumo de servicios.
 
-## Stack
+## 📚 Temas Trabajados
 
-| Tecnologia        | Uso                        |
-| ----------------- | -------------------------- |
-| Flutter           | Aplicacion multiplataforma |
-| Dart 3.9+         | Lenguaje principal         |
-| Material 3        | Sistema visual             |
-| `cupertino_icons` | Iconografia complementaria |
+- Estructura de proyectos Flutter por *features* (auth, dashboard, profile, splash).
+- Rutas nombradas y navegación entre pantallas (`Navigator`, `AppRoutes`).
+- Manejo de estado con `StatefulWidget` y `setState`.
+- Formularios y validación básica (login, registro, recuperación de contraseña).
+- Sistema de diseño centralizado con Material 3 (`ThemeData`, `ColorScheme`, tipografías).
+- Widgets reutilizables (encabezados con degradado, tarjetas de formulario, tarjetas de menú).
+- Componentes visuales modernos: gradientes, sombras, bordes redondeados y animaciones (`AnimationController`).
+- Buenas prácticas de organización de código (`core/` y `features/`).
 
-## Arranque rapido
+## ⚡ Instrucciones para Ejecutar el Programa
 
 ### Requisitos
 
@@ -47,7 +53,7 @@ Para revisar el entorno local:
 flutter doctor
 ```
 
-## Comandos utiles
+### Comandos útiles
 
 ```bash
 # Analisis estatico
@@ -64,6 +70,21 @@ flutter run -d chrome
 flutter run -d windows
 ```
 
+## 📸 Evidencia de Ejecución
+
+| Inicio de sesión | Dashboard |
+| --- | --- |
+| ![Inicio de sesión](img/image.png) | ![Dashboard](img/image%20copy.png) |
+
+## Stack
+
+| Tecnologia        | Uso                        |
+| ----------------- | -------------------------- |
+| Flutter           | Aplicacion multiplataforma |
+| Dart 3.9+         | Lenguaje principal         |
+| Material 3        | Sistema visual             |
+| `cupertino_icons` | Iconografia complementaria |
+
 ## Estructura
 
 ```text
@@ -71,7 +92,8 @@ lib/
 |-- main.dart
 |-- core/
 |   |-- routes/       # Rutas nombradas de la aplicacion
-|   `-- theme/        # Colores y configuracion visual
+|   |-- theme/        # Colores y configuracion visual
+|   `-- widgets/      # Componentes reutilizables (headers, tarjetas)
 `-- features/
     |-- auth/         # Login, registro y recuperacion
     |-- dashboard/    # Inicio y actividad reciente
@@ -82,22 +104,11 @@ lib/
 ## Rutas disponibles
 
 | Ruta               | Pantalla             |
-| ------------------ | -------------------- |
-| `/`                | Splash               |
-| `/login`           | Iniciar sesion       |
-| `/register`        | Registro             |
-| `/forgot-password` | Recuperar contrasena |
-| `/dashboard`       | Dashboard            |
-| `/profile`         | Perfil               |
+| ------------------ | --------------------- |
+| `/`                | Splash                |
+| `/login`           | Iniciar sesion        |
+| `/register`        | Registro               |
+| `/forgot-password` | Recuperar contrasena  |
+| `/dashboard`       | Dashboard              |
+| `/profile`         | Perfil                 |
 
-## Siguiente nivel
-
-La interfaz esta preparada para conectar autenticacion real, persistencia de datos, notificaciones y una capa de estado. El siguiente paso natural es separar la logica de acceso de las pantallas y conectar el dashboard con datos dinamicos.
-
-## Estado del proyecto
-
-**En desarrollo.** La navegacion y las pantallas principales estan montadas; la autenticacion actual funciona como flujo visual local y todavia no depende de un backend.
-
-## Licencia
-
-Uso privado mientras el proyecto se encuentra en desarrollo.

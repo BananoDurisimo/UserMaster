@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/widgets/auth_scaffold.dart';
+
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
 
@@ -17,6 +20,7 @@ class _ForgotPasswordPageState
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Ingresa tu correo electrónico'),
+          behavior: SnackBarBehavior.floating,
         ),
       );
       return;
@@ -27,6 +31,8 @@ class _ForgotPasswordPageState
         content: Text(
           'Se ha enviado el enlace de recuperación a tu correo',
         ),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: AppColors.success,
       ),
     );
   }
@@ -39,54 +45,44 @@ class _ForgotPasswordPageState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Recuperar contraseña'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(height: 40),
-
-            const Icon(
-              Icons.lock_reset,
-              size: 80,
+    return AuthScaffold(
+      icon: Icons.lock_reset,
+      title: 'Recuperar contraseña',
+      subtitle: 'Te enviaremos un enlace de recuperación',
+      showBack: true,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const Text(
+            'Ingresa el correo asociado a tu cuenta y te enviaremos '
+            'las instrucciones para restablecer tu contraseña.',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: AppColors.textSecondary,
+              height: 1.4,
             ),
+          ),
 
-            const SizedBox(height: 24),
+          const SizedBox(height: 24),
 
-            const Text(
-              'Ingresa tu correo electrónico para recuperar tu contraseña.',
-              textAlign: TextAlign.center,
+          TextField(
+            controller: emailController,
+            keyboardType: TextInputType.emailAddress,
+            decoration: const InputDecoration(
+              labelText: 'Correo electrónico',
+              prefixIcon: Icon(Icons.email_outlined),
             ),
+          ),
 
-            const SizedBox(height: 24),
+          const SizedBox(height: 24),
 
-            TextField(
-              controller: emailController,
-              keyboardType: TextInputType.emailAddress,
-              decoration: const InputDecoration(
-                labelText: 'Correo electrónico',
-                prefixIcon: Icon(Icons.email),
-                border: OutlineInputBorder(),
-              ),
+          ElevatedButton(
+            onPressed: sendRecovery,
+            child: const Text(
+              'Enviar enlace de recuperación',
             ),
-
-            const SizedBox(height: 24),
-
-            SizedBox(
-              height: 50,
-              child: ElevatedButton(
-                onPressed: sendRecovery,
-                child: const Text(
-                  'Enviar enlace de recuperación',
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

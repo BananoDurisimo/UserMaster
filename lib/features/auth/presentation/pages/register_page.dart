@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/routes/app_routes.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/widgets/auth_scaffold.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -20,6 +22,7 @@ class _RegisterPageState extends State<RegisterPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Las contraseñas no coinciden'),
+          behavior: SnackBarBehavior.floating,
         ),
       );
       return;
@@ -28,6 +31,8 @@ class _RegisterPageState extends State<RegisterPage> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Cuenta creada correctamente'),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: AppColors.success,
       ),
     );
 
@@ -52,71 +57,78 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Crear cuenta'),
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            TextField(
-              controller: nameController,
-              decoration: const InputDecoration(
-                labelText: 'Nombre completo',
-                prefixIcon: Icon(Icons.person),
-                border: OutlineInputBorder(),
-              ),
+    return AuthScaffold(
+      icon: Icons.person_add_alt_1,
+      title: 'Crear cuenta',
+      subtitle: 'Regístrate para empezar',
+      showBack: true,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          TextField(
+            controller: nameController,
+            decoration: const InputDecoration(
+              labelText: 'Nombre completo',
+              prefixIcon: Icon(Icons.person_outline),
             ),
+          ),
 
-            const SizedBox(height: 16),
+          const SizedBox(height: 16),
 
-            TextField(
-              controller: emailController,
-              keyboardType: TextInputType.emailAddress,
-              decoration: const InputDecoration(
-                labelText: 'Correo electrónico',
-                prefixIcon: Icon(Icons.email),
-                border: OutlineInputBorder(),
-              ),
+          TextField(
+            controller: emailController,
+            keyboardType: TextInputType.emailAddress,
+            decoration: const InputDecoration(
+              labelText: 'Correo electrónico',
+              prefixIcon: Icon(Icons.email_outlined),
             ),
+          ),
 
-            const SizedBox(height: 16),
+          const SizedBox(height: 16),
 
-            TextField(
-              controller: passwordController,
-              obscureText: true,
-              decoration: const InputDecoration(
-                labelText: 'Contraseña',
-                prefixIcon: Icon(Icons.lock),
-                border: OutlineInputBorder(),
-              ),
+          TextField(
+            controller: passwordController,
+            obscureText: true,
+            decoration: const InputDecoration(
+              labelText: 'Contraseña',
+              prefixIcon: Icon(Icons.lock_outline),
             ),
+          ),
 
-            const SizedBox(height: 16),
+          const SizedBox(height: 16),
 
-            TextField(
-              controller: confirmPasswordController,
-              obscureText: true,
-              decoration: const InputDecoration(
-                labelText: 'Confirmar contraseña',
-                prefixIcon: Icon(Icons.lock_outline),
-                border: OutlineInputBorder(),
-              ),
+          TextField(
+            controller: confirmPasswordController,
+            obscureText: true,
+            decoration: const InputDecoration(
+              labelText: 'Confirmar contraseña',
+              prefixIcon: Icon(Icons.lock_outline),
             ),
+          ),
 
-            const SizedBox(height: 24),
+          const SizedBox(height: 24),
 
-            SizedBox(
-              height: 50,
-              child: ElevatedButton(
-                onPressed: register,
-                child: const Text('Crear cuenta'),
+          ElevatedButton(
+            onPressed: register,
+            child: const Text('Crear cuenta'),
+          ),
+
+          const SizedBox(height: 20),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                '¿Ya tienes una cuenta?',
+                style: TextStyle(color: AppColors.textSecondary),
               ),
-            ),
-          ],
-        ),
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Inicia sesión'),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

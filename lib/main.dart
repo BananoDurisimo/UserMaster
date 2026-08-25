@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'core/routes/app_routes.dart';
-import 'core/theme/app_colors.dart';
+import 'core/theme/app_theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,12 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Mi Aplicación',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: AppColors.primary,
-        ),
-        useMaterial3: true,
-      ),
+      theme: AppTheme.light,
       initialRoute: AppRoutes.splash,
       routes: AppRoutes.routes,
     );

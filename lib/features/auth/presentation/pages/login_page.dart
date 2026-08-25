@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import '../../../../core/routes/app_routes.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/widgets/auth_scaffold.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -45,87 +47,49 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Iniciar sesión'),
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(height: 40),
-
-            const Icon(
-              Icons.flutter_dash,
-              size: 80,
+    return AuthScaffold(
+      icon: Icons.flutter_dash,
+      title: 'Bienvenido de nuevo',
+      subtitle: 'Inicia sesión para continuar',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          TextField(
+            controller: emailController,
+            keyboardType: TextInputType.emailAddress,
+            decoration: const InputDecoration(
+              labelText: 'Correo electrónico',
+              prefixIcon: Icon(Icons.email_outlined),
             ),
+          ),
 
-            const SizedBox(height: 40),
+          const SizedBox(height: 16),
 
-            TextField(
-              controller: emailController,
-              keyboardType: TextInputType.emailAddress,
-              decoration: const InputDecoration(
-                labelText: 'Correo electrónico',
-                prefixIcon: Icon(Icons.email),
-                border: OutlineInputBorder(),
-              ),
-            ),
-
-            const SizedBox(height: 16),
-
-            TextField(
-              controller: passwordController,
-              obscureText: obscurePassword,
-              decoration: InputDecoration(
-                labelText: 'Contraseña',
-                prefixIcon: const Icon(Icons.lock),
-                border: const OutlineInputBorder(),
-                suffixIcon: IconButton(
-                  icon: Icon(
-                    obscurePassword
-                        ? Icons.visibility
-                        : Icons.visibility_off,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      obscurePassword = !obscurePassword;
-                    });
-                  },
+          TextField(
+            controller: passwordController,
+            obscureText: obscurePassword,
+            decoration: InputDecoration(
+              labelText: 'Contraseña',
+              prefixIcon: const Icon(Icons.lock_outline),
+              suffixIcon: IconButton(
+                icon: Icon(
+                  obscurePassword
+                      ? Icons.visibility_outlined
+                      : Icons.visibility_off_outlined,
+                  color: AppColors.textHint,
                 ),
+                onPressed: () {
+                  setState(() {
+                    obscurePassword = !obscurePassword;
+                  });
+                },
               ),
             ),
+          ),
 
-            const SizedBox(height: 24),
-
-            SizedBox(
-              height: 50,
-              child: ElevatedButton(
-                onPressed: isLoading ? null : login,
-                child: isLoading
-                    ? const SizedBox(
-                        width: 24,
-                        height: 24,
-                        child: CircularProgressIndicator(),
-                      )
-                    : const Text('Ingresar'),
-              ),
-            ),
-
-            const SizedBox(height: 16),
-
-            TextButton(
-              onPressed: () {
-                Navigator.pushNamed(
-                  context,
-                  AppRoutes.register,
-                );
-              },
-              child: const Text('Registrarse'),
-            ),
-
-            TextButton(
+          Align(
+            alignment: Alignment.centerRight,
+            child: TextButton(
               onPressed: () {
                 Navigator.pushNamed(
                   context,
@@ -134,8 +98,45 @@ class _LoginPageState extends State<LoginPage> {
               },
               child: const Text('¿Olvidaste tu contraseña?'),
             ),
-          ],
-        ),
+          ),
+
+          const SizedBox(height: 8),
+
+          ElevatedButton(
+            onPressed: isLoading ? null : login,
+            child: isLoading
+                ? const SizedBox(
+                    width: 24,
+                    height: 24,
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                      strokeWidth: 2.4,
+                    ),
+                  )
+                : const Text('Ingresar'),
+          ),
+
+          const SizedBox(height: 20),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                '¿No tienes una cuenta?',
+                style: TextStyle(color: AppColors.textSecondary),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    AppRoutes.register,
+                  );
+                },
+                child: const Text('Regístrate'),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
