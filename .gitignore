@@ -2,5 +2,6 @@
 *
 !.gitignore
 !/README.md
-!/lib/
-!/lib/**
+!/build/
+!/build/web/
+!/build/web/**
