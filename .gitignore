@@ -1,7 +1,0 @@
-# Ignora todo el repositorio salvo los archivos y carpetas indicados abajo.
-*
-!.gitignore
-!/README.md
-!/build/
-!/build/web/
-!/build/web/**
