@@ -42,9 +42,32 @@ Aplicar los conocimientos de desarrollo móvil con Flutter para construir una ap
 
 ```bash
 git clone <url-del-repositorio>
-cd flutter_application_1
+cd UserMaster
 flutter pub get
 flutter run
+```
+
+### Ejecutar el build web desplegado
+
+El directorio `build/web` contiene la version compilada de la aplicacion para
+navegadores. Para generarlo nuevamente y ejecutarlo localmente:
+
+```bash
+flutter pub get
+flutter build web --release
+py -m http.server 8000 --directory build/web
+```
+
+Luego abre [http://localhost:8000](http://localhost:8000) en el navegador.
+
+El servidor debe iniciarse sobre `build/web` porque el build necesita cargar
+sus archivos JavaScript, fuentes, iconos y recursos estaticos con rutas HTTP.
+Para detenerlo, presiona `Ctrl+C` en la terminal.
+
+Si el comando `py` no esta disponible, usa:
+
+```bash
+python -m http.server 8000 --directory build/web
 ```
 
 Para revisar el entorno local:
